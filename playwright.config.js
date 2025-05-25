@@ -35,20 +35,37 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+  
+{
+    name: 'chromium',
+    use: {
+      ...devices['Desktop Chrome'],
+      deviceScaleFactor: undefined,
+      viewport: null,
+      launchOptions: {
+        args: ['--start-maximized'],
+        slowMo: 1000
+      }
     },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+  },
+  {
+    name: 'firefox',
+    use: {
+      ...devices['Desktop Firefox'],
+      launchOptions: {
+        slowMo: 1000
+      }
     },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+  },
+  {
+    name: 'webkit',
+    use: {
+      ...devices['Desktop Safari'],
+      launchOptions: {
+        slowMo: 1000
+      }
     },
+  },
 
     /* Test against mobile viewports. */
     // {
