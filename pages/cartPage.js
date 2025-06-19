@@ -1,3 +1,6 @@
+import { expect } from '@playwright/test';
+const {ProductsPage} = require ('./ProductsPage')
+
 exports.CartPage= class CartPage{
 
 constructor(page)
@@ -9,10 +12,12 @@ constructor(page)
     this.zipCodeField=page.getByPlaceholder('Zip/Postal Code');
     this.continueButton=page.getByRole('button', {name: 'Continue'})
     this.finishButton=page.getByText('Finish')
+    this.checkoutPageTitle=page.getByText('Checkout: Your Information')
+    this.orderPlacedText=page.getByText('Thank you for your order!')
 }
 
 async clickCheckoutButton(){
-    await this.page.waitForTimeout(3000)
+    //await this.page.waitForTimeout(3000)
     await this.checkoutButton.click();
 }
 
@@ -41,4 +46,15 @@ async clickFinishButton()
     await this.finishButton.click()
 }
 
+
+
+async checkOutAssert(text)
+{
+    await expect(this.checkoutPageTitle).toHaveText(text);
+}
+
+async orderPlacedAssert(text)
+{
+    await expect(this.orderPlacedText).toHaveText(text);
+}
 }
