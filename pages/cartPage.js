@@ -17,7 +17,6 @@ constructor(page)
 }
 
 async clickCheckoutButton(){
-    //await this.page.waitForTimeout(3000)
     await this.checkoutButton.click();
 }
 
